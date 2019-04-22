@@ -2,6 +2,7 @@
 
 const favoriteList = document.querySelector ('.favorite__list');
 let favoritesArray = [];
+let arrayToSave = [];
 
 const createImg = imgSrc => {
   const newList = document.createElement ('li');
@@ -13,24 +14,35 @@ const createImg = imgSrc => {
   return newList;
 };
 
-const printFavorites = (title, img) => {
-  const favoriteTitle = createTitle (title, 'h3');
-  const favoriteImg = createImg (img);
+const createFavorites = array => {
+  arrayToSave = [];
+  favoriteList.innerHTML = '';
+  for (let i = 0; i < array.length; i++) {
+    
+    const title = array[i].querySelector ('h2').innerHTML;
+    const img = array[i].querySelector ('div').style.backgroundImage;
+    arrayToSave[i] = {titleFav: title, imageFav: img};
 
-  favoriteImg.appendChild (favoriteTitle);
-  favoriteList.appendChild (favoriteImg);
+    const newImg = createImg (img);
+
+    const newTitle = createTitle (title, 'h3');
+    newImg.appendChild (newTitle);
+    favoriteList.appendChild (newImg);
+  }
+
+  setStorage (arrayToSave);
 };
 
-const setStorage = () =>
-  localStorage.setItem ('favorites', JSON.stringify (favoritesArray));
-
+const setStorage = array => {
+  localStorage.removeItem ('favorite');
+  localStorage.setItem ('favorite', JSON.stringify (array));
+};
 const getStorage = () => {
   return JSON.parse (localStorage.getItem ('favorites'));
 };
 
 function storageOrNot () {
   const itemStorage = getStorage ();
-  
 
   if (itemStorage !== null) {
     for (const item of itemStorage) {
@@ -44,13 +56,8 @@ function selectFavorite (event) {
   const selectedItem = event.currentTarget;
   selectedItem.classList.toggle ('favorite__show');
 
-  const title = selectedItem.querySelector ('h2').innerHTML;
-  const img = selectedItem.querySelector ('div').style.backgroundImage;
-
-  favoritesArray.push ({seriesTitle: title, seriesImg: img});
-
-  printFavorites (title, img);
-  setStorage ();
+  const favoriteItems = document.querySelectorAll ('.favorite__show');
+  favoritesArray = Array.from (favoriteItems);
+  createFavorites (favoritesArray);
 }
-
-window.addEventListener ('load', storageOrNot);
+// window.addEventListener ('load', storageOrNot);

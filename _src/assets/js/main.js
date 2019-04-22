@@ -23,16 +23,16 @@ const searchFunction = (data, inputContain) => {
 
   if (titleSeriesLower.includes (inputContainLower)) {
     const title = createTitle (data.name, 'h2');
-    const img = createImageFetch (imageSeries);
+    const img = createImageFetch (imageSeries, data.id);
     img.appendChild (title);
     resultList.appendChild(img);
   }
 };
 
-function createImageFetch (imageSeries) {
+function createImageFetch (imageSeries, dataID) {
   const resultItem = document.createElement ('li');
   resultItem.setAttribute ('class', 'result__item');
-
+  resultItem.setAttribute('id', dataID);
   const resultImage = document.createElement ('div');
   resultImage.setAttribute ('class', 'results__image');
   if (imageSeries === null) {
