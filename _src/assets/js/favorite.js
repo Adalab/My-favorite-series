@@ -1,7 +1,7 @@
 'use strict';
 
 const favoriteList = document.querySelector ('.favorite__list');
-const favoritesArray = [];
+let favoritesArray = [];
 
 const createImg = imgSrc => {
   const newList = document.createElement ('li');
@@ -30,13 +30,14 @@ const getStorage = () => {
 
 function storageOrNot () {
   const itemStorage = getStorage ();
-  console.log(itemStorage);
+  
 
   if (itemStorage !== null) {
     for (const item of itemStorage) {
       printFavorites (item.seriesTitle, item.seriesImg);
     }
   }
+  favoritesArray = [...itemStorage];
 }
 
 function selectFavorite (event) {
