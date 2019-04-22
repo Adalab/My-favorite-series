@@ -15,12 +15,9 @@ const searchFunction = (data, inputContain) => {
 
   if (titleSeriesLower.includes (inputContainLower)) {
     const resultItem = document.createElement ('li');
-    resultItem.setAttribute('class', 'result__item');
+    resultItem.setAttribute ('class', 'result__item');
 
-    resultItem.addEventListener('click', selectFavorite);
-
-    const resultTitle = document.createElement ('h2');
-    const resultTitleText = document.createTextNode (data.name);
+    resultItem.addEventListener ('click', selectFavorite);
 
     const resultImage = document.createElement ('div');
     resultImage.setAttribute ('class', 'results__image');
@@ -30,9 +27,12 @@ const searchFunction = (data, inputContain) => {
       resultImage.style.backgroundImage = `url(${imageSeries.medium})`;
     }
 
+    const resultTitle = document.createElement ('h2');
+    const resultTitleText = document.createTextNode (data.name);
+
     resultTitle.appendChild (resultTitleText);
-    resultItem.appendChild (resultTitle);
     resultItem.appendChild (resultImage);
+    resultItem.appendChild (resultTitle);
     resultList.appendChild (resultItem);
   }
 };

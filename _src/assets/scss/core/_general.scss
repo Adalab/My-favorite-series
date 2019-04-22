@@ -1,0 +1,26 @@
+.body__page {
+    background: lightgrey;
+}
+
+.page__main {
+    display: flex;
+}
+
+.main__section {
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.results__container {
+    background-color: lightcoral;
+    flex-grow: 1;
+}
+
+.form {
+    width: 100%;
+    box-sizing: border-box;
+
+    &:first-child {
+    margin-bottom: 20px;
+    }
+}
