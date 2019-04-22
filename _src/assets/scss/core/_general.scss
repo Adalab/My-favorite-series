@@ -1,19 +1,24 @@
 .body__page {
     background: lightgrey;
+    height: 100vh;
+    margin: 0;
 }
 
 .page__main {
     display: flex;
+    height: 100%;
 }
 
 .main__section {
     box-sizing: border-box;
     padding: 0 20px;
+    height: 100%;
 }
 
 .results__container {
     background-color: lightcoral;
     flex-grow: 1;
+    height: 100%;
 }
 
 .form {
