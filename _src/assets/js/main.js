@@ -2,15 +2,34 @@
 
 const searchInput = document.querySelector ('.form__input');
 const searchButton = document.querySelector ('.button__input');
+const resultList = document.querySelector ('.results__list');
 
 const urlFetch = 'http://api.tvmaze.com/search/shows?q=';
+const defaultImage =
+  'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
 const searchFunction = (data, inputContain) => {
-  const titleSeriesLower = data.toLowerCase ();
+  const titleSeriesLower = data.name.toLowerCase ();
   const inputContainLower = inputContain.toLowerCase ();
+  const imageSeries = data.image;
 
   if (titleSeriesLower.includes (inputContainLower)) {
-    console.log (data);
+    const resultItem = document.createElement ('li');
+    const resultTitle = document.createElement ('h2');
+    const resultTitleText = document.createTextNode (data.name);
+
+    const resultImage = document.createElement ('div');
+    resultImage.setAttribute ('class', 'results__image');
+    if (imageSeries === null) {
+      resultImage.style.backgroundImage = `url(${defaultImage})`;
+    } else {
+      resultImage.style.backgroundImage = `url(${imageSeries.medium})`;
+    }
+
+    resultTitle.appendChild (resultTitleText);
+    resultItem.appendChild (resultTitle);
+    resultItem.appendChild (resultImage);
+    resultList.appendChild (resultItem);
   }
 };
 
@@ -21,7 +40,7 @@ function searchSeries () {
     .then (response => response.json ())
     .then (data => {
       for (const series of data) {
-        const titleSeries = series.show.name;
+        const titleSeries = series.show;
         searchFunction (titleSeries, inputContain);
       }
     });
