@@ -1,9 +1,8 @@
 'use strict';
 
 const favoriteList = document.querySelector ('.favorite__list');
+
 let favoritesArray = [];
-let arrayToSave = [];
-let arrayOfLocal = [];
 
 const createImg = imgSrc => {
   const newList = document.createElement ('li');
@@ -15,53 +14,55 @@ const createImg = imgSrc => {
   return newList;
 };
 
-const createFavorites = array => {
-  arrayToSave = [];
+const createElement = array => {
   favoriteList.innerHTML = '';
   for (let i = 0; i < array.length; i++) {
-    const title = array[i].querySelector ('h2').innerHTML;
-    const img = array[i].querySelector ('div').style.backgroundImage;
-    arrayToSave.push ({titleFav: title, imageFav: img});
-
-    const newImg = createImg (img);
-
-    const newTitle = createTitle (title, 'h3');
-    newImg.appendChild (newTitle);
-    favoriteList.appendChild (newImg);
+    const newItem = createImg (array[i].image);
+    const newTitle = createTitle (array[i].title, 'h3');
+    newItem.appendChild (newTitle);
+    favoriteList.appendChild (newItem);
   }
-  setStorage ([...arrayOfLocal, ...arrayToSave]);
 };
 
 const setStorage = array => {
   localStorage.removeItem ('favorite');
   localStorage.setItem ('favorite', JSON.stringify (array));
 };
+
 const getStorage = () => {
   return JSON.parse (localStorage.getItem ('favorite'));
 };
 
 function storageOrNot () {
   const itemStorage = getStorage ();
-
   if (itemStorage !== null) {
-    for (const item of itemStorage) {
-      console.log (item);
-      const newImg = createImg (item.imageFav);
-      const newTitle = createTitle (item.titleFav, 'h3');
-      newImg.appendChild (newTitle);
-      favoriteList.appendChild (newImg);
-    }
+    favoritesArray.push(...itemStorage)
+    createElement (itemStorage);
   }
-  arrayOfLocal = [...itemStorage];
 }
 
 function selectFavorite (event) {
   const selectedItem = event.currentTarget;
   selectedItem.classList.toggle ('favorite__show');
 
-  const favoriteItems = document.querySelectorAll ('.favorite__show');
-  favoritesArray = Array.from (favoriteItems);
-  createFavorites (favoritesArray);
-  console.log(favoritesArray);
+  const favTitle = selectedItem.querySelector ('h2').innerHTML;
+  const favImg = selectedItem.querySelector ('div').style.backgroundImage;
+  const favId = parseInt (selectedItem.getAttribute ('id'));
+
+  // If the array is empty, add a first item. Then search inside de array to look for the id of the selected Item. If it is erased, else added to the object.
+  if (favoritesArray.length === 0) {
+    favoritesArray.push ({id: favId, title: favTitle, image: favImg});
+  } else {
+    const searchFavorite = favoritesArray.findIndex (function (element) {
+      return element.id === favId;
+    });
+    if (searchFavorite === -1) {
+      favoritesArray.push ({id: favId, title: favTitle, image: favImg});
+    } else {
+      favoritesArray.splice (searchFavorite, 1);
+    }
+  }
+  createElement (favoritesArray);
+  setStorage (favoritesArray);
 }
-window.addEventListener ('reload', storageOrNot);
+window.addEventListener ('load', storageOrNot);
