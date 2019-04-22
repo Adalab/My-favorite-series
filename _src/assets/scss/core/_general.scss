@@ -12,13 +12,12 @@
 .main__section {
     box-sizing: border-box;
     padding: 0 20px;
-    height: 100%;
 }
 
 .results__container {
     background-color: lightcoral;
     flex-grow: 1;
-    height: 100%;
+    overflow: scroll;
 }
 
 .form {
