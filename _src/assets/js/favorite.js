@@ -21,7 +21,23 @@ const printFavorites = (title, img) => {
   favoriteList.appendChild (favoriteImg);
 };
 
-const setStorage = () => localStorage.setItem('favorites', JSON.stringify(favoritesArray));
+const setStorage = () =>
+  localStorage.setItem ('favorites', JSON.stringify (favoritesArray));
+
+const getStorage = () => {
+  return JSON.parse (localStorage.getItem ('favorites'));
+};
+
+function storageOrNot () {
+  const itemStorage = getStorage ();
+  console.log(itemStorage);
+
+  if (itemStorage !== null) {
+    for (const item of itemStorage) {
+      printFavorites (item.seriesTitle, item.seriesImg);
+    }
+  }
+}
 
 function selectFavorite (event) {
   const selectedItem = event.currentTarget;
@@ -33,6 +49,7 @@ function selectFavorite (event) {
   favoritesArray.push ({seriesTitle: title, seriesImg: img});
 
   printFavorites (title, img);
-  setStorage();
+  setStorage ();
 }
 
+window.addEventListener ('load', storageOrNot);
