@@ -21,6 +21,8 @@ const printFavorites = (title, img) => {
   favoriteList.appendChild (favoriteImg);
 };
 
+const setStorage = () => localStorage.setItem('favorites', JSON.stringify(favoritesArray));
+
 function selectFavorite (event) {
   const selectedItem = event.currentTarget;
   selectedItem.classList.toggle ('favorite__show');
@@ -31,4 +33,6 @@ function selectFavorite (event) {
   favoritesArray.push ({seriesTitle: title, seriesImg: img});
 
   printFavorites (title, img);
+  setStorage();
 }
+
