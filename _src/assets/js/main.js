@@ -8,8 +8,8 @@ const urlFetch = 'http://api.tvmaze.com/search/shows?q=';
 const defaultImage =
   'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
-const createTitle = data => {
-  const resultTitle = document.createElement ('h2');
+const createTitle = (data, type) => {
+  const resultTitle = document.createElement (type);
   const resultTitleText = document.createTextNode (data);
 
   resultTitle.appendChild (resultTitleText);
@@ -22,7 +22,7 @@ const searchFunction = (data, inputContain) => {
   const imageSeries = data.image;
 
   if (titleSeriesLower.includes (inputContainLower)) {
-    const title = createTitle (data.name);
+    const title = createTitle (data.name, 'h2');
     const img = createImageFetch (imageSeries);
     img.appendChild (title);
     resultList.appendChild(img);

@@ -9,9 +9,9 @@
         <title>Buscador de series</title>
     </head>
     
-    <body>
-        <div class="page">
-            <main class="page__main">
+    <body class="body__page">
+        <main class="page__main">
+            <section class="main__section">
                 <div class="form__container">
                      <h1 class="form__title">Buscador de series</h1>
 
@@ -20,11 +20,14 @@
                     <input type="text" name="search__input" class="form__input form">
                     <button class="button__input form" type="button">Buscar</button>
                 </div>
-                <section class="results__container">
-                    <ul class="results__list"></ul>
-                </section>
-            </main>
-        </div>
+                <div class="favorite__container">
+                    <ul class="favorite__list"></ul>
+                </div>
+            </section>
+            <section class="results__container">
+                <ul class="results__list"></ul>
+            </section>
+        </main>
         <script src="assets/js/main.js"></script>
     </body>
 
