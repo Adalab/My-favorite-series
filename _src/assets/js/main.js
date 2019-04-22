@@ -8,34 +8,43 @@ const urlFetch = 'http://api.tvmaze.com/search/shows?q=';
 const defaultImage =
   'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
+const createTitle = data => {
+  const resultTitle = document.createElement ('h2');
+  const resultTitleText = document.createTextNode (data);
+
+  resultTitle.appendChild (resultTitleText);
+  return resultTitle;
+};
+
 const searchFunction = (data, inputContain) => {
   const titleSeriesLower = data.name.toLowerCase ();
   const inputContainLower = inputContain.toLowerCase ();
   const imageSeries = data.image;
 
   if (titleSeriesLower.includes (inputContainLower)) {
-    const resultItem = document.createElement ('li');
-    resultItem.setAttribute ('class', 'result__item');
-
-    resultItem.addEventListener ('click', selectFavorite);
-
-    const resultImage = document.createElement ('div');
-    resultImage.setAttribute ('class', 'results__image');
-    if (imageSeries === null) {
-      resultImage.style.backgroundImage = `url(${defaultImage})`;
-    } else {
-      resultImage.style.backgroundImage = `url(${imageSeries.medium})`;
-    }
-
-    const resultTitle = document.createElement ('h2');
-    const resultTitleText = document.createTextNode (data.name);
-
-    resultTitle.appendChild (resultTitleText);
-    resultItem.appendChild (resultImage);
-    resultItem.appendChild (resultTitle);
-    resultList.appendChild (resultItem);
+    const title = createTitle (data.name);
+    const img = createImageFetch (imageSeries);
+    img.appendChild (title);
+    resultList.appendChild(img);
   }
 };
+
+function createImageFetch (imageSeries) {
+  const resultItem = document.createElement ('li');
+  resultItem.setAttribute ('class', 'result__item');
+
+  const resultImage = document.createElement ('div');
+  resultImage.setAttribute ('class', 'results__image');
+  if (imageSeries === null) {
+    resultImage.style.backgroundImage = `url(${defaultImage})`;
+  } else {
+    resultImage.style.backgroundImage = `url(${imageSeries.medium})`;
+  }
+
+  resultItem.addEventListener ('click', selectFavorite);
+  resultItem.appendChild (resultImage);
+  return resultItem;
+}
 
 function searchSeries () {
   resultList.innerHTML = '';
