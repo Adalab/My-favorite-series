@@ -34,6 +34,7 @@ const searchFunction = (data, inputContain) => {
 };
 
 function searchSeries () {
+  resultList.innerHTML = '';
   const inputContain = searchInput.value;
 
   fetch (`${urlFetch}${inputContain}`)
