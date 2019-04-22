@@ -3,6 +3,7 @@
 const favoriteList = document.querySelector ('.favorite__list');
 let favoritesArray = [];
 let arrayToSave = [];
+let arrayOfLocal = [];
 
 const createImg = imgSrc => {
   const newList = document.createElement ('li');
@@ -18,10 +19,9 @@ const createFavorites = array => {
   arrayToSave = [];
   favoriteList.innerHTML = '';
   for (let i = 0; i < array.length; i++) {
-    
     const title = array[i].querySelector ('h2').innerHTML;
     const img = array[i].querySelector ('div').style.backgroundImage;
-    arrayToSave[i] = {titleFav: title, imageFav: img};
+    arrayToSave.push ({titleFav: title, imageFav: img});
 
     const newImg = createImg (img);
 
@@ -29,8 +29,7 @@ const createFavorites = array => {
     newImg.appendChild (newTitle);
     favoriteList.appendChild (newImg);
   }
-
-  setStorage (arrayToSave);
+  setStorage ([...arrayOfLocal, ...arrayToSave]);
 };
 
 const setStorage = array => {
@@ -38,7 +37,7 @@ const setStorage = array => {
   localStorage.setItem ('favorite', JSON.stringify (array));
 };
 const getStorage = () => {
-  return JSON.parse (localStorage.getItem ('favorites'));
+  return JSON.parse (localStorage.getItem ('favorite'));
 };
 
 function storageOrNot () {
@@ -46,10 +45,14 @@ function storageOrNot () {
 
   if (itemStorage !== null) {
     for (const item of itemStorage) {
-      printFavorites (item.seriesTitle, item.seriesImg);
+      console.log (item);
+      const newImg = createImg (item.imageFav);
+      const newTitle = createTitle (item.titleFav, 'h3');
+      newImg.appendChild (newTitle);
+      favoriteList.appendChild (newImg);
     }
   }
-  favoritesArray = [...itemStorage];
+  arrayOfLocal = [...itemStorage];
 }
 
 function selectFavorite (event) {
@@ -59,5 +62,6 @@ function selectFavorite (event) {
   const favoriteItems = document.querySelectorAll ('.favorite__show');
   favoritesArray = Array.from (favoriteItems);
   createFavorites (favoritesArray);
+  console.log(favoritesArray);
 }
-// window.addEventListener ('load', storageOrNot);
+window.addEventListener ('reload', storageOrNot);
