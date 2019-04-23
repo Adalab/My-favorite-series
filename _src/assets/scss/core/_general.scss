@@ -14,7 +14,8 @@
 .main__section {
     box-sizing: border-box;
     padding: 0 20px;
-    min-width: 300px;
+    max-width: 300px;
+    overflow-y: scroll;
 }
 
 .results__container {

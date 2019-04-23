@@ -33,10 +33,23 @@ const getStorage = () => {
   return JSON.parse (localStorage.getItem ('favorite'));
 };
 
+const checkFavorite = (dataId, element) => {
+  const searchFavorite = favoritesArray.findIndex (
+    favorite => favorite.id === dataId
+  );
+
+  console.log (dataId, element, searchFavorite);
+
+  if (searchFavorite >= 0) {
+    console.log(searchFavorite);
+    element.classList.add ('favorite__show');
+  }
+};
+
 function storageOrNot () {
   const itemStorage = getStorage ();
   if (itemStorage !== null) {
-    favoritesArray.push(...itemStorage)
+    favoritesArray.push (...itemStorage);
     createElement (itemStorage);
   }
 }
@@ -53,9 +66,10 @@ function selectFavorite (event) {
   if (favoritesArray.length === 0) {
     favoritesArray.push ({id: favId, title: favTitle, image: favImg});
   } else {
-    const searchFavorite = favoritesArray.findIndex (function (element) {
-      return element.id === favId;
-    });
+    const searchFavorite = favoritesArray.findIndex (
+      favorite => favorite.id === favId
+    );
+
     if (searchFavorite === -1) {
       favoritesArray.push ({id: favId, title: favTitle, image: favImg});
     } else {

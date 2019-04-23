@@ -33,6 +33,7 @@ const searchFunction = (data, inputContain) => {
     const img = createImageFetch (imageSeries, data.id);
     img.appendChild (title);
     resultList.appendChild(img);
+    checkFavorite(data.id, img);
   }
 };
 
