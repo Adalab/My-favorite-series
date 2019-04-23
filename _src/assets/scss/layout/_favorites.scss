@@ -1,16 +1,33 @@
 .favorite__list {
-    display: grid;
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
     padding: 0;
 }
 
 .favorite__item {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    // &::after {
+    // content: 
+    // }
+    // &:hover {
+        
+    // }
+}
+
+.trash__icon {
+    margin: 0 10px;
+    justify-self: flex-end;
+    visibility: hidden;
 }
 
 .favorite__title {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
     margin: 0 0 0 10px;
 }
 

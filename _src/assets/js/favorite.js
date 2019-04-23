@@ -19,7 +19,10 @@ const createElement = array => {
   for (let i = 0; i < array.length; i++) {
     const newItem = createImg (array[i].image);
     const newTitle = createTitle (array[i].title, 'h3', 'favorite__title');
+    const newIcon = document.createElement ('i');
+    newIcon.setAttribute ('class', 'trash__icon fas fa-trash-alt');
     newItem.appendChild (newTitle);
+    newItem.appendChild (newIcon);
     favoriteList.appendChild (newItem);
   }
 };
@@ -41,7 +44,7 @@ const checkFavorite = (dataId, element) => {
   console.log (dataId, element, searchFavorite);
 
   if (searchFavorite >= 0) {
-    console.log(searchFavorite);
+    console.log (searchFavorite);
     element.classList.add ('favorite__show');
   }
 };
