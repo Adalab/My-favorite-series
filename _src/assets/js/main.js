@@ -4,6 +4,12 @@ const searchInput = document.querySelector ('.form__input');
 const searchButton = document.querySelector ('.button__input');
 const resultList = document.querySelector ('.results__list');
 
+const pressEnter = event => {
+  if (event.keyCode === 13) {
+    searchSeries();
+  }
+};
+
 const urlFetch = 'http://api.tvmaze.com/search/shows?q=';
 const defaultImage =
   'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
@@ -61,3 +67,4 @@ function searchSeries () {
 }
 
 searchButton.addEventListener ('click', searchSeries);
+window.addEventListener('keyup', pressEnter);
