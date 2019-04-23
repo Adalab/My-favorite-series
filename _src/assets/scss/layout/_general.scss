@@ -55,10 +55,10 @@
 .form {
     width: 100%;
     box-sizing: border-box;
-    border-radius: 5px;
     border: none;
-    height: 30px;
+    height: 40px;
     font-family: $fontFamily;
+    font-size: 18px;
 
     &:first-child {
     margin-bottom: 20px;
@@ -72,6 +72,9 @@
 
 .form__input{
     padding: 10px;
+    color: white;
+    background: transparent;
+    border-bottom: 3px solid white;
 }
 
 .hidden {

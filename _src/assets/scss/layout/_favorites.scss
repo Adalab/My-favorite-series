@@ -17,6 +17,7 @@
     width: 100%;
     margin-bottom: 10px;
 
+
     &:hover .trash__icon {
         visibility: visible;  
     }
@@ -24,6 +25,19 @@
     &:hover {
         background-color: $removeBackground; 
         cursor: pointer;
+        animation-name: move-ifhover;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes move-ifhover {
+    0% {
+        transform: rotate(1deg);
+    } 50% {
+        transform: rotate(-1deg);
+    } 100% {
+        transform: rotate(1deg);
     }
 }
 

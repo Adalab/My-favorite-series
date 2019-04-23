@@ -18,12 +18,16 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
+   
 
     &:hover {
+        box-sizing: border-box;
         background-color: $favoriteBackground;
         color: $mainColor;
+        box-shadow: 5px 5px 10px rgba(black, 0.50);
     }
 }
+
 .results__image {
     height: 295px;
     width: 210px;
