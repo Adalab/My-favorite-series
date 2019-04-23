@@ -19,7 +19,7 @@ const createTitle = (data, type, className) => {
   const resultTitleText = document.createTextNode (data);
 
   resultTitle.appendChild (resultTitleText);
-  resultTitle.setAttribute('class', className)
+  resultTitle.setAttribute('class', className);
   return resultTitle;
 };
 

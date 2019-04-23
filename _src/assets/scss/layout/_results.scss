@@ -4,15 +4,25 @@
     padding: 0;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
-    grid-template-rows: 350px;
 }
 
+.result__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
 .results__image {
     height: 295px;
     width: 210px;
 }
 
+.list__title {
+    margin: 0;
+}
+
 .favorite__show {
-    background-color: lightblue;
-    color: blue;
+    background-color: $favoriteBackground;
+    color: $mainColor;
 }
