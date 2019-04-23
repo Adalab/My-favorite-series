@@ -3,6 +3,7 @@
 const searchInput = document.querySelector ('.form__input');
 const searchButton = document.querySelector ('.button__input');
 const resultList = document.querySelector ('.results__list');
+const searchTitle = document.querySelector('.results__main--title');
 
 const pressEnter = event => {
   if (event.keyCode === 13) {
@@ -57,6 +58,7 @@ function createImageFetch (imageSeries, dataID) {
 function searchSeries () {
   resultList.innerHTML = '';
   const inputContain = searchInput.value;
+  searchTitle.classList.remove('hidden');
 
   fetch (`${urlFetch}${inputContain}`)
     .then (response => response.json ())
