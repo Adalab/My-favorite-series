@@ -1,7 +1,12 @@
 <main class="page__main">
     <section class="main__section">
-        <h1 class="main__title">Buscador de series</h1>
-        <p class="favorite__text">Utiliza el buscador para encontrar tus serie favoritas.
+
+        <div class="title__container">
+            <i class="tv__icon fas fa-file-video"></i>
+            <h1 class="main__title">Buscador de series</h1>
+        </div>
+
+        <p class="main__text">Utiliza el buscador para encontrar tus serie favoritas.
         </p>
 
         <div class="search__box">
@@ -10,13 +15,15 @@
         </div>
 
         <div class="favorite__container">
-            <h2 class="favorite__main--title"><i class="fas fa-crown"></i>  Mis series favoritas</h2>
+            <h2 class="favorite__main--title">
+                <i class="fas fa-crown"></i> Mis series favoritas</h2>
             <ul class="favorite__list"></ul>
         </div>
     </section>
 
     <section class="results__container">
-        <ul class="results__list"></ul>
+        <h2 class="results__main--title hidden">Resultado de la búsqueda</h2>
+            <ul class="results__list"></ul>
     </section>
 
 </main>

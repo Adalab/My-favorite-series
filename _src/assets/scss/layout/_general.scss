@@ -9,6 +9,10 @@
 .page__main {
     display: flex;
     height: 100%;
+    @media all and (max-width: 560px) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .main__section {
@@ -16,12 +20,34 @@
     padding: 0 20px;
     max-width: 300px;
     overflow-y: auto;
+    @media all and (max-width: 560px) {
+        overflow: unset;
+    }
+}
+
+.title__container {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.main__title {
+    font-size: 32px;
+    margin: 0;
+}
+
+.tv__icon {
+    font-size: 60px;
+    margin: 0 10px 0 0;
 }
 
 .results__container {
     background-color: #1b1b1c;;
     flex-grow: 1;
     overflow: auto;
+    @media all and (max-width: 560px) {
+        overflow: unset;
+    }
 }
 
 .form {
@@ -44,4 +70,12 @@
 
 .form__input{
     padding: 10px;
+}
+
+.results__main--title {
+    margin-left: 20px;
+}
+
+.hidden {
+    display: none;
 }
