@@ -1,8 +1,26 @@
+.favorite__container {
+    margin-top: 20px;
+}
+
 .favorite__list {
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
+}
+
+.favorite__title--container {
+    display: flex;
+    align-items: center;
+}
+
+.favorite__icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.favorite__main--title {
+    font-size: 20px;
 }
 
 .trash__icon {
@@ -17,6 +35,7 @@
     width: 100%;
     margin-bottom: 10px;
 
+
     &:hover .trash__icon {
         visibility: visible;  
     }
@@ -24,21 +43,20 @@
     &:hover {
         background-color: $removeBackground; 
         cursor: pointer;
+        animation-name: move-ifhover;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
     }
 }
 
-.favorite__title--container {
-    display: flex;
-    align-items: center;
-}
-
-.favorite__icon {
-    margin: 0 10px;
-    font-size: 20px;
-}
-
-.favorite__main--title {
-    font-size: 20px;
+@keyframes move-ifhover {
+    0% {
+        transform: rotate(1deg);
+    } 50% {
+        transform: rotate(-1deg);
+    } 100% {
+        transform: rotate(1deg);
+    }
 }
 
 .favorite__title {
