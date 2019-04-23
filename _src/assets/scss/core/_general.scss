@@ -1,7 +1,9 @@
 .body__page {
-    background: lightgrey;
+    background: #1b1b1c;
     height: 100vh;
     margin: 0;
+    font-family: $fontFamily;
+    color: white;
 }
 
 .page__main {
@@ -12,10 +14,11 @@
 .main__section {
     box-sizing: border-box;
     padding: 0 20px;
+    min-width: 300px;
 }
 
 .results__container {
-    background-color: lightcoral;
+    background-color: #1b1b1c;;
     flex-grow: 1;
     overflow: scroll;
 }
@@ -23,8 +26,21 @@
 .form {
     width: 100%;
     box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    font-family: $fontFamily;
 
     &:first-child {
     margin-bottom: 20px;
     }
+}
+
+.button__input {
+    background-color: #700270;
+    color: white;
+}
+
+.form__input{
+    padding: 10px;
 }

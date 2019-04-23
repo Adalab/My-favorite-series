@@ -18,7 +18,7 @@ const createElement = array => {
   favoriteList.innerHTML = '';
   for (let i = 0; i < array.length; i++) {
     const newItem = createImg (array[i].image);
-    const newTitle = createTitle (array[i].title, 'h3');
+    const newTitle = createTitle (array[i].title, 'h3', 'favorite__title');
     newItem.appendChild (newTitle);
     favoriteList.appendChild (newItem);
   }
