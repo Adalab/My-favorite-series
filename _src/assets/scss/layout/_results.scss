@@ -1,9 +1,14 @@
+.results__main--title {
+    font-size: 18px;
+}
+
 .results__list {
     list-style: none;
     display: grid;
     padding: 0;
     grid-template-columns:repeat(auto-fill, 295px);
     grid-gap: 10px;
+    margin: 0 auto;
 }
 
 .result__item {
@@ -13,6 +18,11 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
+
+    &:hover {
+        background-color: $favoriteBackground;
+        color: $mainColor;
+    }
 }
 .results__image {
     height: 295px;
